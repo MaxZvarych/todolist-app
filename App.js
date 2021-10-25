@@ -37,16 +37,16 @@ export default function App() {
   let plusBgColor = addData ? "yellow" : "#FFFFFF";
   let plusRotateDegree = addData ? -45 : 0;
 
-  let handlePlusPress = (e) => {
+  let handlePlusPress = (event) => {
     setAddData(!addData);
   };
 
-  var { width, height } = Dimensions.get("window");
+  const { width, height } = Dimensions.get("window");
 
   let darkenedStyle = addData
     ? {
-        height: Dimensions.get("window").height,
-        width: Dimensions.get("window").width,
+        height,
+        width,
         backgroundColor: "rgba(37, 42, 49, 0.7)",
       }
     : {};
@@ -56,8 +56,8 @@ export default function App() {
         uri: "https://wallpapershome.com/images/pages/pic_h/23736.jpg",
       }}
       style={{
-        height: Dimensions.get("window").height,
-        width: Dimensions.get("window").width,
+        height,
+        width,
         overflow: "hidden",
         flex: 1,
       }}

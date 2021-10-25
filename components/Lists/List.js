@@ -8,6 +8,8 @@ export default function List({ name, colorType, tasksAmount }) {
     (colorType === "grey") | (colorType === "yellow") ? "black" : "white";
   let amount = tasksAmount > 1 ? `${tasksAmount} tasks` : `${tasksAmount} task`;
   const { height, width } = Dimensions.get("window");
+  const heightScale = 0.07;
+  const widthScale = 0.7;
   return (
     <View
       style={{
@@ -17,8 +19,8 @@ export default function List({ name, colorType, tasksAmount }) {
 
         borderRadius: 10,
         backgroundColor: colorType,
-        height: height * 0.07,
-        width: width * 0.7,
+        height: height * heightScale,
+        width: width * widthScale,
 
         flexDirection: "column",
         justifyContent: "space-around",
@@ -26,9 +28,7 @@ export default function List({ name, colorType, tasksAmount }) {
       }}
     >
       <Text style={(styles.name, { color: nameColor })}>{name}</Text>
-      <Text style={(styles.tasks_amount, { color: nameColor, opacity: 0.5 })}>
-        {amount}
-      </Text>
+      <Text style={(styles.tasks_amount, { color: nameColor })}>{amount}</Text>
     </View>
   );
 }

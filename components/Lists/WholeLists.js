@@ -5,9 +5,9 @@ import List from "./List";
 import { lists } from "../Data/ListsData";
 
 export default function WholeLists() {
-  return lists.map((item, index) => {
+  return lists.map((item) => {
     return (
-      <View style={styles.lists} key={index}>
+      <View style={styles.lists} key={item.id}>
         <List
           name={item.name}
           colorType={item.colorType}
