@@ -1,17 +1,17 @@
 import React from "react";
-import { View, Text, Dimensions } from "react-native";
+import { Text, Dimensions, TouchableOpacity } from "react-native";
 
 import styles from "./List.styles";
 
-export default function List({ name, colorType, tasksAmount }) {
+export default function List({ name, colorType, tasksAmount, onClickCb }) {
   let nameColor =
-    (colorType === "grey") | (colorType === "yellow") ? "black" : "white";
+    (colorType === "#EBEFF5") | (colorType === "yellow") ? "black" : "white";
   let amount = tasksAmount > 1 ? `${tasksAmount} tasks` : `${tasksAmount} task`;
   const { height, width } = Dimensions.get("window");
   const heightScale = 0.07;
   const widthScale = 0.7;
   return (
-    <View
+    <TouchableOpacity
       style={{
         paddingLeft: 10,
         marginBottom: 10,
@@ -26,9 +26,10 @@ export default function List({ name, colorType, tasksAmount }) {
         justifyContent: "space-around",
         alignItems: "flex-start",
       }}
+      onPress={() => onClickCb(name, colorType)}
     >
       <Text style={(styles.name, { color: nameColor })}>{name}</Text>
       <Text style={(styles.tasks_amount, { color: nameColor })}>{amount}</Text>
-    </View>
+    </TouchableOpacity>
   );
 }

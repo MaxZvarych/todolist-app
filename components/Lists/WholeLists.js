@@ -4,7 +4,7 @@ import { View, StyleSheet, Dimensions } from "react-native";
 import List from "./List";
 import { lists } from "../Data/ListsData";
 
-export default function WholeLists() {
+export default function WholeLists({ onClickCb }) {
   return lists.map((item) => {
     return (
       <View style={styles.lists} key={item.id}>
@@ -12,6 +12,7 @@ export default function WholeLists() {
           name={item.name}
           colorType={item.colorType}
           tasksAmount={item.tasksAmount}
+          onClickCb={onClickCb}
         />
       </View>
     );
