@@ -3,7 +3,12 @@ import { Text, Dimensions, TouchableOpacity } from "react-native";
 
 import styles from "./List.styles";
 
-export default function List({ name, colorType, tasksAmount, onClickCb }) {
+export default function List({
+  name,
+  colorType,
+  tasksAmount,
+  onClickCallback,
+}) {
   let nameColor =
     (colorType === "#EBEFF5") | (colorType === "yellow") ? "black" : "white";
   let amount = tasksAmount > 1 ? `${tasksAmount} tasks` : `${tasksAmount} task`;
@@ -26,7 +31,7 @@ export default function List({ name, colorType, tasksAmount, onClickCb }) {
         justifyContent: "space-around",
         alignItems: "flex-start",
       }}
-      onPress={() => onClickCb(name, colorType)}
+      onPress={() => onClickCallback(name, colorType)}
     >
       <Text style={(styles.name, { color: nameColor })}>{name}</Text>
       <Text style={(styles.tasks_amount, { color: nameColor })}>{amount}</Text>
