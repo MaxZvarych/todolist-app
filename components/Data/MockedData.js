@@ -15,7 +15,7 @@ export const listItems = [
   {
     id: 3,
     text: "Don’t forget to pick up Mickael from school",
-    colorType: "grey",
+    colorType: "#EBEFF5",
     alarm: false,
   },
   {

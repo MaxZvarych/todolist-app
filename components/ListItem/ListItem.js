@@ -5,16 +5,16 @@ import RoundCheckbox from "rn-round-checkbox";
 
 import AlarmClock from "../../Images/Alarm.svg";
 
-function Alarm({ time }) {
+function Alarm({ time, textColor }) {
   return (
     <View style={styles.alarm}>
       <AlarmClock />
-      <Text style={styles.alarm_text}>{time}</Text>
+      <Text style={[styles.alarm_text, { color: textColor }]}>{time}</Text>
     </View>
   );
 }
 
-export default function ListItem({ text, colorType, alarm }) {
+export default function ListItem({ text, colorType, alarm, textColor }) {
   const [isSelected, setIsSelected] = useState(false);
 
   let opacity = isSelected ? 0.5 : 1;
@@ -36,7 +36,7 @@ export default function ListItem({ text, colorType, alarm }) {
             fontSize: 18,
             lineHeight: 21,
             letterSpacing: -0.2,
-            color: "#252A31",
+            color: textColor,
             opacity: opacity,
 
             width: 250,
@@ -76,7 +76,7 @@ export default function ListItem({ text, colorType, alarm }) {
               fontSize: 18,
               lineHeight: 21,
               letterSpacing: -1,
-              color: "#252A31",
+              color: textColor,
               opacity: opacity,
 
               width: 250,
@@ -84,7 +84,7 @@ export default function ListItem({ text, colorType, alarm }) {
           >
             {text}
           </Text>
-          <Alarm time={alarm.time} />
+          <Alarm time={alarm.time} textColor={textColor} />
         </View>
 
         <View style={styles.circle}>
