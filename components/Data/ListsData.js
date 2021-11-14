@@ -12,8 +12,8 @@ export const lists = [
   {
     id: 0,
     name: "Inbox",
-    colorType: "grey",
-    tasksAmount: findAmountByColorType("grey"),
+    colorType: "#EBEFF5",
+    tasksAmount: findAmountByColorType("#EBEFF5"),
   },
   {
     id: 1,
