@@ -61,7 +61,7 @@ export default function ListItem({
           style
           size={25}
           checked={isSelected}
-          onValueChange={(newValue) => {
+          onValueChange={() => {
             setIsSelected(!isSelected);
           }}
         />
@@ -76,7 +76,7 @@ export default function ListItem({
             color: textColor,
             opacity: opacity,
 
-            width: 250,
+            width: 230,
           }}
         >
           {text}

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   View,
   Dimensions,
@@ -57,13 +57,24 @@ export default function AddItem({ navigation, route }) {
   };
 
   let changeActive = (name, colorType) => setChosenList({ name, colorType });
-
+  const [inputText, setInputText] = useState("");
   const [todo, setTodo] = useState({
-    id: Math.floor(Math.random() * (100 - 10 + 1) + 10),
+    id: Math.floor(Math.random() * (1000000 - 10 + 1) + 10),
     colorType: chosenList.colorType,
     text: "",
     alarm: { time: `${time.time} ${date.day} ${date.month} ${date.year}` },
   });
+
+  useEffect(() => {
+    setTodo({
+      id: Math.floor(Math.random() * (1000000 - 10 + 1) + 10),
+      colorType: chosenList.colorType,
+      text: inputText,
+      alarm: {
+        time: `${time.time} ${date.day} ${date.month} ${date.year}`,
+      },
+    });
+  }, [inputText]);
 
   return (
     <View style={[styles.container, { height }]}>
@@ -81,14 +92,10 @@ export default function AddItem({ navigation, route }) {
           colorType={chosenList.colorType}
           withInput={true}
           textColor='black'
-          inputSubmitCallback={(text) =>
-            setTodo({
-              text,
-              alarm: {
-                time: `${time.time} ${date.day} ${date.month} ${date.year}`,
-              },
-            })
-          }
+          inputSubmitCallback={(text) => {
+            console.log(text);
+            setInputText(text);
+          }}
         />
       </View>
       <View style={[styles.filter_wrapper, { height: height * 0.52 }]}>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Home from "./components/Home/Home";
@@ -12,9 +12,13 @@ const Stack = createNativeStackNavigator();
 export default function App() {
   const [items, setItems] = useState(listItems);
   let updateItemsCallback = (item) => {
-    console.log(item);
-    setItems([...items, item]);
+    // console.log(item);
+    let copy = items;
+    copy.push(item);
+    setItems(copy);
+    console.log(items);
   };
+  useEffect(() => {}, [items]);
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName='Home'>
