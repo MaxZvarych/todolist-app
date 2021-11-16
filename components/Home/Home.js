@@ -16,7 +16,6 @@ const { width, height } = Dimensions.get("window");
 function Home({ navigation, todos }) {
   const [items, setItems] = useState([]);
   useEffect(() => {
-    console.log("Todos inside Home efect: ", todos.todos);
     setItems(todos.todos);
   }, []);
   const [isSelected, setIsSelected] = useState(false);

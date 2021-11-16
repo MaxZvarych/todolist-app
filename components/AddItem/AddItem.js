@@ -21,15 +21,16 @@ import { changeToDos } from "../../redux/actions/todos";
 import { connect } from "react-redux";
 
 const { width, height } = Dimensions.get("window");
+const today = new Date();
 
 function AddItem({ navigation, changeToDos, todos }) {
   const [chosenList, setChosenList] = useState({
     name: "Inbox",
     colorType: "#EBEFF5",
   });
+
   const [filterMode, setFilterMode] = useState("List");
   const [showPickTime, setShowPickTime] = useState(false);
-  let today = new Date();
   const [date, setDate] = useState({
     day: today.toLocaleDateString().split("/")[0],
     month: today.toLocaleDateString().split("/")[1],
