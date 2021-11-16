@@ -19,7 +19,7 @@ export default function AddItemHeader({
           let copy = todos.todos;
           copy.push(item);
           changeToDos(copy);
-          navigation.navigate("Home");
+          navigation.navigate("Home", { colorModified: item.colorType });
         }}
       >
         <Text style={[styles.text, { fontWeight: "bold" }]}>Done</Text>

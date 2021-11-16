@@ -20,6 +20,9 @@ export default function App() {
             name='Home'
             options={{ headerShown: false }}
             component={Home}
+            initialParams={{
+              colorModified: "",
+            }}
           />
           <Stack.Screen
             options={{ headerShown: false }}

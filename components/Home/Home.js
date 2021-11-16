@@ -13,7 +13,8 @@ import { connect } from "react-redux";
 
 const { width, height } = Dimensions.get("window");
 
-function Home({ navigation, todos }) {
+function Home({ navigation, todos, route }) {
+  const { colorModified } = route.params;
   const [items, setItems] = useState([]);
   useEffect(() => {
     setItems(todos.todos);
@@ -41,7 +42,10 @@ function Home({ navigation, todos }) {
         <Header />
         <WholeItems items={items} />
         <Text style={styles.text}> Lists</Text>
-        <WholeLists onClickCallback={showListDetailed} />
+        <WholeLists
+          onClickCallback={showListDetailed}
+          colorModified={colorModified}
+        />
       </ScrollView>
       {isSelected ? (
         <View
