@@ -1,7 +1,7 @@
 import { StatusBar } from "expo-status-bar";
 
 import { View, Text, ScrollView, TouchableOpacity } from "react-native";
-import React, { useState, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import Header from "../Header/Header";
 import WholeItems from "../ListItem/WholeItems";
 import WholeLists from "../Lists/WholeLists";
@@ -9,11 +9,16 @@ import styles from "../../App.styles";
 import Plus from "../../Images/Plus.svg";
 import Menu from "../Home/Menu";
 import { Dimensions } from "react-native";
+import { connect } from "react-redux";
 
 const { width, height } = Dimensions.get("window");
 
-export default function Home({ navigation, route }) {
-  const { items } = route.params;
+function Home({ navigation, todos }) {
+  const [items, setItems] = useState([]);
+  useEffect(() => {
+    console.log("Todos inside Home efect: ", todos.todos);
+    setItems(todos.todos);
+  }, []);
   const [isSelected, setIsSelected] = useState(false);
   let plusBgColor = isSelected ? "yellow" : "#FFFFFF";
   let plusRotateDegree = isSelected ? -45 : 0;
@@ -76,3 +81,11 @@ export default function Home({ navigation, route }) {
     </View>
   );
 }
+
+const mapStateToProps = (state) => {
+  const { todos } = state;
+  // console.log(todos);
+  return { todos };
+};
+
+export default connect(mapStateToProps)(Home);

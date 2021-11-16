@@ -16,11 +16,13 @@ import AddItemLists from "./AddItemLists/AddItemLists";
 import CalendarPicker from "react-native-calendar-picker";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import ListItem from "../ListItem/ListItem";
+import { bindActionCreators } from "redux";
+import { changeToDos } from "../../redux/actions/todos";
+import { connect } from "react-redux";
 
 const { width, height } = Dimensions.get("window");
 
-export default function AddItem({ navigation, route }) {
-  const { updateItemsCallback } = route.params;
+function AddItem({ navigation, changeToDos, todos }) {
   const [chosenList, setChosenList] = useState({
     name: "Inbox",
     colorType: "#EBEFF5",
@@ -36,7 +38,6 @@ export default function AddItem({ navigation, route }) {
   const [time, setTime] = useState({ time: "10:00" });
 
   let onTimeChange = (time) => {
-    // console.log(time);
     if (time.type === "dismissed") {
       setFilterMode("List");
     }
@@ -80,7 +81,8 @@ export default function AddItem({ navigation, route }) {
     <View style={[styles.container, { height }]}>
       <AddItemHeader
         navigation={navigation}
-        updateItemsCallback={updateItemsCallback}
+        changeToDos={changeToDos}
+        todos={todos}
         item={todo}
       />
       <View style={[styles.content_wrapper, { height: height * 0.4 }]}>
@@ -153,3 +155,18 @@ export default function AddItem({ navigation, route }) {
     </View>
   );
 }
+
+const mapDispatchToProps = (dispatch) =>
+  bindActionCreators(
+    {
+      changeToDos,
+    },
+    dispatch
+  );
+
+const mapStateToProps = (state) => {
+  const { todos } = state;
+  return { todos };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddItem);

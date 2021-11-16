@@ -5,7 +5,8 @@ import styles from "./AddItemHeader.styles";
 const { height } = Dimensions.get("window");
 export default function AddItemHeader({
   navigation,
-  updateItemsCallback,
+  changeToDos,
+  todos,
   item,
 }) {
   return (
@@ -15,7 +16,9 @@ export default function AddItemHeader({
       </TouchableOpacity>
       <TouchableOpacity
         onPress={() => {
-          updateItemsCallback(item);
+          let copy = todos.todos;
+          copy.push(item);
+          changeToDos(copy);
           navigation.navigate("Home");
         }}
       >
